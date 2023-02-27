@@ -24,15 +24,23 @@ jobs:
         run: |
           # Add build and test commands here
 
-  verify_issue:
+   verify_issue:
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/heads/issue/')
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Verify issue
+      - name: Get issue details
+        id: issue
+        uses: peter-evans/get-issue-details@v1
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+      - name: Print issue details
         run: |
-          # Add issue verification commands here
+          echo "Issue Title: ${{ steps.issue.outputs.title }}"
+          echo "Issue Body: ${{ steps.issue.outputs.body }}"
+          echo "Issue Number: ${{ steps.issue.outputs.number }}"
+
 
 
       
