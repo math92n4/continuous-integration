@@ -1,4 +1,4 @@
-name: CI
+name: verify-issue.yml
 
 on:
   push:
@@ -12,3 +12,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Build and test
+        run: gh issue comment $ISSUE --body "Issue is now verified"
+        
+      

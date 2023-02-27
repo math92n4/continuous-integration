@@ -1,12 +1,26 @@
-name: CI
 
+name: ci.yml
+
+#The on section specifies that the workflow should trigger on push events to the master or main branch.
 on:
   push:
-    branches: [main, master]
+    branches:
+      - master
+      - main
 
+#The jobs section defines a single job called mainline, which runs on the ubuntu-latest operating system.      
 jobs:
   mainline:
     runs-on: ubuntu-latest
     steps:
+    #The steps section of the mainline job specifies two steps:
+    #The first step checks out the repository code using the actions/checkout action.
       - name: Checkout code
         uses: actions/checkout@v2
+        #The second step runs a placeholder Build and test command that you will need to replace with your own build and test commands.
+      - name: Build and test
+        run: |
+          # Add build and test commands here
+
+
+      
