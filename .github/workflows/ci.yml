@@ -7,9 +7,11 @@ on:
     branches:
       - master
       - main
+      - issue/*'
 
 #The jobs section defines a single job called mainline, which runs on the ubuntu-latest operating system.      
 jobs:
+
   mainline:
     runs-on: ubuntu-latest
     steps:
@@ -21,6 +23,16 @@ jobs:
       - name: Build and test
         run: |
           # Add build and test commands here
+
+  verify_issue:
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/heads/issue/')
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Verify issue
+        run: |
+          # Add issue verification commands here
 
 
       
